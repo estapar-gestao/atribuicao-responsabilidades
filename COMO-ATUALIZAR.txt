@@ -1,0 +1,39 @@
+SITE "ATRIBUIÇÃO DE RESPONSABILIDADES" — ESTAPAR
+================================================
+
+Endereço público (abre para qualquer pessoa, sem login):
+  https://brunocruz-creator.github.io/atribuicao-responsabilidades/
+
+Link já filtrado (exemplo para mandar a uma garagem):
+  https://brunocruz-creator.github.io/atribuicao-responsabilidades/?garagem=Hopi%20Hari&funcao=Lideran%C3%A7a#rotina
+  (o jeito mais fácil: abra o site, escolha garagem e função e clique em "Copiar link desta visão")
+
+ARQUIVOS
+  index.html  -> visual do site (não precisa mexer)
+  dados.js    -> TODO o conteúdo: tarefas, responsáveis, periodicidades, prazos, links, garagens e avisos
+  img/        -> logo Estapar, Esta Power e selo GPTW
+
+COMO ATUALIZAR O CONTEÚDO (pelo navegador, sem instalar nada)
+  1. Entre em https://github.com/brunocruz-creator/atribuicao-responsabilidades
+  2. Clique em dados.js e depois no lápis (Edit this file).
+  3. Altere o texto. Exemplos:
+     - Trocar o link da planilha de receita do mês: procure "FCT Faturamento SPI" e troque o endereço em u:'...'
+     - Nova tarefa: copie um bloco { id: ... }, cole abaixo e ajuste.
+     - Novo aviso no topo: edite a lista AVISOS.
+     - Atualize a data em  atualizadoEm: '18/11/2026'
+  4. Clique em "Commit changes". Em 1 a 2 minutos o site está atualizado.
+
+REGRAS PARA NÃO QUEBRAR
+  - Textos sempre entre aspas simples: 'assim'. Não use apóstrofo reto dentro do texto.
+  - Mantenha as vírgulas entre os blocos e entre os itens.
+  - Periodicidades: 'Diária', 'Semanal', 'Quinzenal', 'Mensal', 'Quando necessário'
+  - Funções: 'Liderança', 'Analista', 'Supervisão'
+
+DAR ACESSO DE EDIÇÃO AO LUIZ
+  GitHub > repositório > Settings > Collaborators > Add people > conta GitHub do Luiz.
+  Só quem for colaborador consegue editar. Quem só visita o site não altera nada.
+
+ATENÇÃO
+  O site é público para quem tiver o link (não aparece no Google: está marcado como "noindex").
+  Os sistemas que ele abre continuam pedindo login normalmente.
+  A Retaguarda (10.200.0.52) só abre na rede Estapar ou pela VPN.

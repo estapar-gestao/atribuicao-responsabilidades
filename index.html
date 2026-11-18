@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Atribuição de Responsabilidades | Estapar</title>
+<meta name="description" content="O que fazer, quando fazer e onde fazer: rotinas diárias, semanais, quinzenais e mensais dos líderes Estapar, com o link direto para cada sistema e planilha.">
+<meta name="theme-color" content="#151618">
+<link rel="icon" type="image/png" href="img/estapar.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap">
+<style>
+:root{
+  --brand:#70D44B; --teal:#73E0C1; --ink:#3A8A1C; --soft:#EBF8E4;
+  --dark:#151618; --dark2:#1E2023; --dmute:#B5B9BD;
+  --bg:#F6F7F7; --card:#FFFFFF; --fg:#151618; --mute:#5F6468; --line:#E3E6E7; --chip:#F0F2F2;
+  --amber:#E9A23B; --warn:#9A5B00; --info:#2457B3; --crit:#C62F2F;
+  --f:"Poppins",system-ui,"Segoe UI",Arial,sans-serif;
+  --r:18px; --ease:cubic-bezier(.2,.7,.2,1);
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth;scroll-padding-top:150px}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--f);font-size:15px;line-height:1.55;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{max-width:100%}
+a{color:inherit;text-decoration:none}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--brand);outline-offset:2px;border-radius:6px}
+.wrap{max-width:1200px;margin:0 auto;padding:0 32px}
+
+/* ================= CABEÇALHO ================= */
+.nav{position:fixed;inset:0 0 auto 0;z-index:50;transition:background .35s,box-shadow .35s,backdrop-filter .35s}
+.nav .in{max-width:1280px;margin:0 auto;padding:14px 32px;display:flex;align-items:center;gap:28px}
+.nav .logo img{height:44px;width:auto;display:block;transition:height .3s}
+.nav.solid{background:#151618ee;backdrop-filter:blur(12px);box-shadow:0 10px 30px -18px #000}
+.nav.solid .logo img{height:36px}
+.menu{display:flex;gap:4px;margin-left:auto}
+.menu a{color:#E8EAEB;font-weight:500;font-size:14px;padding:8px 14px;border-radius:999px;transition:background .2s,color .2s}
+.menu a:hover,.menu a.on{background:#ffffff14;color:var(--brand)}
+.marcas{display:flex;align-items:center;gap:10px}
+.marcas .ep{background:#fff;border-radius:8px;padding:3px 5px;height:38px;display:block}
+.marcas .ep img{height:100%;width:auto;display:block}
+.marcas .gptw{height:54px;width:auto;display:block}
+.bt-share{border:1px solid #ffffff38;background:#ffffff10;color:#fff;border-radius:999px;height:38px;padding:0 16px;cursor:pointer;font-weight:600;font-size:13px;display:inline-flex;align-items:center;gap:8px;transition:.2s}
+.bt-share:hover{border-color:var(--brand);background:#70D44B26}
+.burger{display:none;border:0;background:#ffffff14;color:#fff;width:42px;height:42px;border-radius:12px;cursor:pointer;margin-left:auto}
+/* estrada de progresso: o carrinho anda conforme a rolagem */
+.estrada{position:absolute;left:0;right:0;bottom:-6px;height:6px;pointer-events:none;opacity:0;transition:opacity .3s}
+.nav.solid .estrada{opacity:1}
+.estrada::before{content:"";position:absolute;left:0;right:0;top:2px;height:2px;background:repeating-linear-gradient(90deg,#ffffff30 0 18px,transparent 18px 30px)}
+.estrada .feito{position:absolute;left:0;top:1px;height:4px;width:0;background:linear-gradient(90deg,var(--teal),var(--brand));border-radius:0 4px 4px 0}
+.estrada .carro{position:absolute;top:-7px;left:0;width:30px;height:18px;transform:translateX(-50%);filter:drop-shadow(0 2px 3px #0008)}
+
+/* ================= CAPA ================= */
+.hero{position:relative;min-height:min(92vh,860px);background:var(--dark);color:#fff;overflow:hidden;display:flex;align-items:center;padding:120px 0 90px}
+.estac-wrap{position:absolute;inset:-20px;transition:transform .4s ease-out}
+.estac{width:100%;height:100%;display:block}
+.estac .mov{animation:anda linear infinite}
+.estac .mov.volta{animation-name:volta}
+@keyframes anda{from{transform:translateX(-160px)}to{transform:translateX(1760px)}}
+@keyframes volta{from{transform:translateX(1760px)}to{transform:translateX(-160px)}}
+.estac .sens{animation:sens 4s ease-in-out infinite}
+@keyframes sens{0%,100%{opacity:.3}50%{opacity:1}}
+.estac .faixa{animation:faixa 2.4s linear infinite}
+@keyframes faixa{to{stroke-dashoffset:-56}}
+.estac .cancela{transform-box:fill-box;transform-origin:0% 50%;animation:cancela 8s ease-in-out infinite}
+@keyframes cancela{0%,28%,100%{transform:rotate(0)}38%,66%{transform:rotate(-72deg)}}
+.estac .vaga{animation:vaga 6s ease-in-out infinite}
+@keyframes vaga{0%,100%{opacity:0}40%,60%{opacity:.9}}
+.estac .estaciona{animation:estaciona 14s var(--ease) infinite}
+@keyframes estaciona{0%{transform:translate(-200px,0)}35%{transform:translate(0,0)}45%,85%{transform:translate(0,-88px)}95%,100%{transform:translate(0,-88px);opacity:0}}
+.hero::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse at 20% 50%,#151618f5 0%,#151618d8 40%,#15161870 75%,#15161840 100%),linear-gradient(0deg,#151618 0%,#15161800 30%)}
+.hero .wrap{position:relative;z-index:2;width:100%}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:600;letter-spacing:.04em;color:var(--teal)}
+.eyebrow::before{content:"/";color:var(--brand);font-weight:700}
+.hero h1{font-size:clamp(34px,5.6vw,68px);line-height:1.04;font-weight:700;letter-spacing:-.02em;margin:16px 0 18px;max-width:14ch}
+.hero h1 .g{background:linear-gradient(90deg,var(--teal),var(--brand));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero .lead{font-size:clamp(15px,1.6vw,19px);color:#D6D9DB;max-width:56ch;margin:0 0 30px}
+.anim-in{opacity:0;transform:translateY(24px);animation:sobe .9s var(--ease) forwards}
+.d1{animation-delay:.1s}.d2{animation-delay:.25s}.d3{animation-delay:.4s}.d4{animation-delay:.55s}
+@keyframes sobe{to{opacity:1;transform:none}}
+/* seletor rápido na capa */
+.rapido{display:flex;gap:10px;flex-wrap:wrap;align-items:stretch;background:#ffffff12;border:1px solid #ffffff26;backdrop-filter:blur(10px);border-radius:22px;padding:10px;max-width:760px}
+.campo{flex:1 1 210px;display:flex;flex-direction:column;gap:2px;background:#fff;color:var(--fg);border-radius:14px;padding:8px 14px}
+.campo label{font-size:11.5px;font-weight:600;color:var(--mute);letter-spacing:.03em}
+.campo select{border:0;background:none;padding:0;font-weight:600;font-size:15px;cursor:pointer;outline:none;width:100%}
+.bt{display:inline-flex;align-items:center;justify-content:center;gap:10px;border:0;cursor:pointer;background:var(--brand);color:var(--dark);font-weight:700;font-size:15px;border-radius:14px;padding:14px 24px;transition:transform .2s var(--ease),background .2s,box-shadow .2s}
+.bt:hover{background:#86E063;transform:translateY(-2px);box-shadow:0 14px 26px -14px #70D44B}
+.bt svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;transition:transform .2s}
+.bt:hover svg{transform:translateX(3px)}
+.atalhos{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+.atalhos a{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;font-weight:500;color:#E8EAEB;border:1px solid #ffffff2e;border-radius:999px;padding:7px 14px;transition:.2s}
+.atalhos a:hover{border-color:var(--brand);color:var(--brand)}
+.atalhos a b{display:grid;place-items:center;min-width:22px;height:22px;padding:0 6px;border-radius:999px;background:var(--brand);color:var(--dark);font-size:12px}
+.rolar{position:absolute;left:50%;bottom:26px;z-index:2;transform:translateX(-50%);width:26px;height:42px;border:2px solid #ffffff60;border-radius:14px}
+.rolar::after{content:"";position:absolute;left:50%;top:8px;width:4px;height:8px;margin-left:-2px;border-radius:2px;background:var(--brand);animation:rolar 1.8s ease-in-out infinite}
+@keyframes rolar{0%{opacity:0;transform:translateY(0)}40%{opacity:1}100%{opacity:0;transform:translateY(14px)}}
+
+/* ================= AVISO ================= */
+.aviso-faixa{background:var(--amber);color:var(--dark)}
+.aviso-faixa .wrap{display:flex;align-items:center;gap:14px;padding-top:14px;padding-bottom:14px;flex-wrap:wrap}
+.aviso-faixa .ic{width:30px;height:30px;border-radius:50%;background:var(--dark);color:var(--amber);display:grid;place-items:center;font-weight:800;flex:none;animation:pulsa 2.2s ease-in-out infinite}
+@keyframes pulsa{0%,100%{box-shadow:0 0 0 0 #15161855}50%{box-shadow:0 0 0 8px #15161800}}
+.aviso-faixa p{margin:0;flex:1 1 300px;font-size:14.5px}
+.aviso-faixa a{background:var(--dark);color:#fff;font-weight:600;font-size:13.5px;border-radius:999px;padding:8px 16px;white-space:nowrap;transition:.2s}
+.aviso-faixa a:hover{background:#000;color:var(--brand)}
+
+/* ================= SEÇÕES ================= */
+section{padding:90px 0}
+.sec-h{margin-bottom:38px;max-width:760px}
+.sec-h h2{font-size:clamp(28px,3.6vw,44px);line-height:1.1;letter-spacing:-.02em;margin:10px 0 12px;font-weight:700}
+.sec-h p{margin:0;color:var(--mute);font-size:16px}
+.eyebrow.esc{color:var(--ink)}
+.rv{opacity:0;transform:translateY(28px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.rv.vis{opacity:1;transform:none}
+
+/* como funciona */
+.passos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;counter-reset:p}
+.passo{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:28px 26px;position:relative;overflow:hidden;transition:transform .3s var(--ease),box-shadow .3s}
+.passo:hover{transform:translateY(-6px);box-shadow:0 24px 40px -28px #0007}
+.passo .n{font-size:15px;font-weight:700;color:var(--ink)}
+.passo h3{font-size:21px;margin:14px 0 6px;line-height:1.25}
+.passo p{margin:0;color:var(--mute);font-size:14.5px}
+.passo .ico{position:absolute;right:20px;top:20px;width:54px;height:54px;border-radius:16px;background:var(--soft);display:grid;place-items:center}
+.passo .ico svg{width:26px;height:26px;stroke:var(--ink);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+/* ================= MINHA ROTINA ================= */
+#rotina{background:var(--card);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.filtro{position:sticky;top:64px;z-index:30;background:#ffffffef;backdrop-filter:blur(12px);border:1px solid var(--line);border-radius:20px;padding:10px;display:flex;gap:10px;flex-wrap:wrap;align-items:center;box-shadow:0 18px 40px -30px #0008;margin-bottom:34px}
+.pers{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;flex:1 1 auto;min-width:0}
+.pers::-webkit-scrollbar{display:none}
+.pers button{flex:none;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:9px 16px;cursor:pointer;font-weight:600;font-size:13.5px;white-space:nowrap;display:inline-flex;align-items:center;gap:8px;transition:.2s}
+.pers button i{font-style:normal;font-size:12px;background:var(--chip);border-radius:999px;padding:0 8px;color:var(--mute)}
+.pers button:hover{border-color:var(--brand)}
+.pers button.on{background:var(--dark);color:#fff;border-color:var(--dark)}
+.pers button.on i{background:var(--brand);color:var(--dark)}
+.sel{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.sel select,.sel input{height:42px;border:1px solid var(--line);background:var(--card);border-radius:12px;padding:0 12px;font-size:13.5px;max-width:230px;cursor:pointer}
+.sel input{cursor:text;width:190px}
+.sel .ativo{border-color:var(--brand);background:var(--soft);font-weight:600}
+.limpar{border:0;background:none;color:var(--crit);font-weight:600;cursor:pointer;font-size:13px;padding:6px}
+.resumo{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:-14px 0 26px;color:var(--mute);font-size:14px}
+.resumo b{color:var(--fg)}
+.resumo .tag{background:var(--soft);color:var(--ink);font-weight:600;border-radius:999px;padding:3px 12px;font-size:13px}
+.resumo .copia{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:4px 12px;font-size:12.5px;font-weight:600;cursor:pointer}
+.resumo .copia:hover{border-color:var(--brand);color:var(--ink)}
+
+.faixa-per{margin-top:44px}
+.faixa-per:first-child{margin-top:0}
+.fp-h{display:flex;align-items:center;gap:16px;margin-bottom:18px}
+.fp-h .bolha{width:56px;height:56px;border-radius:18px;display:grid;place-items:center;background:var(--c);color:var(--t);flex:none;font-weight:700;font-size:13px;text-align:center;line-height:1.05;box-shadow:0 12px 24px -16px var(--c)}
+.fp-h h3{margin:0;font-size:24px;line-height:1.15}
+.fp-h small{display:block;color:var(--mute);font-size:13.5px;font-weight:500}
+.fp-h .lane{flex:1;height:3px;min-width:30px;background:repeating-linear-gradient(90deg,var(--line) 0 22px,transparent 22px 36px);background-size:36px 3px;animation:lane 1.6s linear infinite}
+@keyframes lane{to{background-position:36px 0}}
+.fp-h .q{font-weight:700;color:var(--mute);font-size:14px;white-space:nowrap}
+.tarefas{display:grid;gap:16px}
+.vaz{border:2px dashed var(--line);border-radius:var(--r);padding:22px;color:var(--mute);font-size:14px;text-align:center}
+
+.tarefa{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:0;background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;position:relative;transition:border-color .25s,box-shadow .3s,transform .3s var(--ease)}
+.tarefa::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:linear-gradient(180deg,var(--teal),var(--brand))}
+.tarefa:hover{border-color:#BFE5AD;box-shadow:0 26px 44px -32px #0009;transform:translateY(-3px)}
+.t-corpo{padding:22px 24px 22px 28px;min-width:0}
+.t-top{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.dept{font-size:12px;font-weight:600;color:var(--ink);letter-spacing:.02em}
+.dept::before{content:"/ ";color:var(--brand)}
+.novo{background:var(--crit);color:#fff;font-size:10.5px;font-weight:700;border-radius:999px;padding:1px 9px;letter-spacing:.05em}
+.tarefa h4{margin:6px 0 2px;font-size:19px;line-height:1.3}
+.t-sub{margin:0;color:var(--mute);font-size:13.5px}
+.quem{display:grid;gap:10px;margin-top:16px}
+.papel{display:grid;grid-template-columns:120px minmax(0,1fr);gap:12px;align-items:start}
+.papel .rs{display:flex;flex-direction:column;gap:4px}
+.resp{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:700}
+.resp i{width:10px;height:10px;border-radius:50%;background:var(--c);flex:none}
+.papel p{margin:0;font-size:14.5px}
+.papel .pp{display:flex;gap:5px;flex-wrap:wrap;margin-top:4px}
+.pc{font-size:11.5px;font-weight:600;border-radius:999px;padding:1px 9px;background:var(--c);color:var(--t)}
+.prazo{display:flex;gap:10px;align-items:flex-start;margin-top:16px;background:#FFF6E3;border-radius:12px;padding:10px 14px;font-size:13.5px;color:#3d2a00}
+.prazo b{color:var(--warn)}
+.prazo svg{flex:none;width:18px;height:18px;margin-top:2px;stroke:var(--warn);fill:none;stroke-width:2.2;stroke-linecap:round}
+.t-onde{background:var(--chip);padding:22px 20px;display:flex;flex-direction:column;gap:10px;border-left:1px solid var(--line)}
+.t-onde .tt{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--mute)}
+.sis{display:flex;gap:6px;flex-wrap:wrap}
+.sis span{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:2px 9px;font-size:12.5px;font-weight:500}
+.lk{display:flex;align-items:center;gap:10px;background:var(--brand);color:var(--dark);font-weight:700;font-size:13.5px;border-radius:12px;padding:11px 14px;line-height:1.25;transition:transform .2s var(--ease),background .2s,box-shadow .2s}
+.lk:hover{background:#86E063;transform:translateY(-2px);box-shadow:0 12px 22px -14px var(--ink)}
+.lk .ic{flex:none;width:30px;height:30px;border-radius:9px;background:#ffffff70;display:grid;place-items:center}
+.lk .ic svg,.lk .seta{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.lk .tx{flex:1;min-width:0}
+.lk .seta{flex:none;transition:transform .2s}
+.lk:hover .seta{transform:translate(2px,-2px)}
+.rede{display:block;font-size:11px;font-weight:600;color:#1f4f0d;margin-top:1px}
+.semlink{font-size:13px;color:var(--mute);background:var(--card);border:1px dashed var(--line);border-radius:12px;padding:10px 12px}
+
+/* ================= PRAZOS ================= */
+#prazos{background:var(--dark);color:#fff;position:relative;overflow:hidden}
+#prazos .sec-h p{color:var(--dmute)}
+#prazos .eyebrow{color:var(--teal)}
+.prz{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px}
+.pz{background:var(--dark2);border:1px solid #ffffff14;border-radius:var(--r);padding:24px 20px;transition:transform .3s var(--ease),border-color .3s}
+.pz:hover{transform:translateY(-6px);border-color:var(--brand)}
+.pz .v{font-size:clamp(30px,3.4vw,42px);font-weight:700;line-height:1;background:linear-gradient(90deg,var(--teal),var(--brand));-webkit-background-clip:text;background-clip:text;color:transparent}
+.pz .v small{font-size:.45em;font-weight:600}
+.pz h3{font-size:15px;margin:12px 0 4px}
+.pz p{margin:0;color:var(--dmute);font-size:13px}
+
+/* ================= GARAGENS ================= */
+.gars{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.gar{position:relative;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px 22px 20px;cursor:pointer;text-align:left;overflow:hidden;transition:transform .3s var(--ease),box-shadow .3s,border-color .3s;display:flex;flex-direction:column;gap:6px;min-height:150px}
+.gar:hover{transform:translateY(-6px);border-color:var(--brand);box-shadow:0 26px 40px -30px #0009}
+.gar.on{border-color:var(--brand);background:var(--soft)}
+.gar .vg{position:absolute;right:18px;top:16px;width:58px;height:74px;border:2px dashed #C9CED0;border-top:0;border-radius:0 0 8px 8px}
+.gar .vg svg{position:absolute;left:50%;bottom:-120px;width:30px;height:54px;transform:translateX(-50%);transition:bottom .7s var(--ease);opacity:0}
+.gar:hover .vg svg,.gar.on .vg svg{opacity:1}
+.gar:hover .vg svg,.gar.on .vg svg{bottom:8px}
+.gar .vg::after{content:"P";position:absolute;left:50%;top:22px;transform:translateX(-50%);font-weight:800;font-size:22px;color:#C9CED0;transition:opacity .3s}
+.gar:hover .vg::after,.gar.on .vg::after{opacity:0}
+.gar .nm{font-size:17px;font-weight:600;line-height:1.3;padding-right:70px;margin-top:auto}
+.gar .ob{font-size:12px;font-weight:600;color:var(--warn)}
+.gar .ac{font-size:13px;color:var(--ink);font-weight:600;display:flex;align-items:center;gap:6px}
+.gar .ac svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;transition:transform .2s}
+.gar:hover .ac svg{transform:translateX(4px)}
+.nota{margin-top:20px;color:var(--mute);font-size:13.5px}
+
+/* ================= CENTRAL DE LINKS ================= */
+#links{background:var(--card);border-top:1px solid var(--line)}
+.lk-busca{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:24px}
+.lk-busca input{flex:1 1 280px;height:48px;border:1px solid var(--line);border-radius:14px;padding:0 16px;font-size:15px;background:var(--bg)}
+.lk-busca input:focus{outline:2px solid var(--brand);border-color:transparent}
+.tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.tile{display:flex;flex-direction:column;gap:10px;background:var(--bg);border:1px solid var(--line);border-radius:var(--r);padding:20px;transition:transform .3s var(--ease),border-color .3s,box-shadow .3s,background .3s}
+.tile:hover{transform:translateY(-5px);border-color:var(--brand);background:#fff;box-shadow:0 22px 36px -28px #0009}
+.tile .top{display:flex;align-items:center;gap:12px}
+.tile .ic{flex:none;width:44px;height:44px;border-radius:13px;background:var(--dark);display:grid;place-items:center}
+.tile .ic svg{width:21px;height:21px;stroke:var(--brand);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.tile h3{margin:0;font-size:16px;line-height:1.3}
+.tile .tp{font-size:11.5px;font-weight:600;color:var(--mute);text-transform:uppercase;letter-spacing:.06em}
+.tile .pq{margin:0;font-size:13.5px;color:var(--mute)}
+.tile .pps{display:flex;gap:5px;flex-wrap:wrap}
+.tile .ir{margin-top:auto;display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:14px;color:var(--ink)}
+.tile .ir svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;transition:transform .2s}
+.tile:hover .ir svg{transform:translate(3px,-3px)}
+.tile .rd{font-size:12px;font-weight:600;color:var(--warn)}
+
+/* ================= DÚVIDAS ================= */
+.faq{display:grid;gap:12px;max-width:900px}
+.faq details{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:0 22px;transition:border-color .25s}
+.faq details[open]{border-color:var(--brand)}
+.faq summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:16px;padding:18px 0;font-weight:600;font-size:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary .n{color:var(--ink);font-weight:700;min-width:32px}
+.faq summary .mx{margin-left:auto;width:30px;height:30px;border-radius:50%;background:var(--chip);display:grid;place-items:center;flex:none;transition:transform .3s,background .3s}
+.faq details[open] .mx{transform:rotate(45deg);background:var(--brand)}
+.faq .rsp{padding:0 0 20px 48px;color:var(--mute);font-size:14.5px}
+.faq .rsp a{color:var(--ink);font-weight:600;text-decoration:underline}
+
+/* ================= RODAPÉ ================= */
+footer{background:var(--dark);color:var(--dmute);padding:56px 0 30px;font-size:13.5px}
+.ft{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:32px}
+.ft img.lg{height:52px;width:auto;display:block;margin-bottom:14px}
+.ft h4{color:#fff;font-size:14px;margin:0 0 12px}
+.ft ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.ft a:hover{color:var(--brand)}
+.ft .mc{display:flex;gap:12px;align-items:center;margin-top:16px}
+.ft .mc .ep{background:#fff;border-radius:8px;padding:3px 5px;height:40px}
+.ft .mc .ep img{height:100%;width:auto;display:block}
+.ft .mc .gptw{height:58px;width:auto}
+.copy{border-top:1px solid #ffffff14;margin-top:36px;padding-top:20px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:12.5px}
+
+/* ================= COMPARTILHAR / TOAST ================= */
+.share-pop{position:fixed;z-index:80;width:280px;background:#fff;color:var(--fg);border:1px solid var(--line);border-radius:16px;padding:10px;box-shadow:0 30px 60px -20px #000a;animation:sobe .2s ease-out}
+.share-pop .h{font-size:12px;font-weight:600;color:var(--mute);padding:4px 8px 8px}
+.share-pop button,.share-pop a{display:flex;align-items:center;gap:10px;width:100%;border:0;background:none;text-align:left;padding:10px;border-radius:10px;cursor:pointer;font-size:14px;font-weight:500}
+.share-pop button:hover,.share-pop a:hover{background:var(--soft);color:var(--ink)}
+.share-pop input{width:100%;margin-top:6px;border:1px solid var(--line);border-radius:8px;padding:7px 9px;font-size:12px;color:var(--mute);background:var(--chip)}
+.toast{position:fixed;left:50%;bottom:24px;z-index:90;transform:translate(-50%,20px);opacity:0;background:var(--dark);color:#fff;padding:12px 18px;border-radius:12px;font-size:14px;transition:.25s;pointer-events:none}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.toast b{color:var(--brand)}
+.topo{position:fixed;right:20px;bottom:20px;z-index:40;width:48px;height:48px;border-radius:50%;border:0;background:var(--brand);color:var(--dark);cursor:pointer;box-shadow:0 14px 28px -12px #3A8A1C;opacity:0;transform:translateY(20px);transition:.3s;pointer-events:none}
+.topo.show{opacity:1;transform:none;pointer-events:auto}
+.topo svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+
+/* ================= RESPONSIVO ================= */
+@media (max-width:1100px){
+  .prz{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .tiles,.gars{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .menu a{padding:8px 10px}
+  .marcas .gptw{display:none}
+}
+@media (max-width:900px){
+  .burger{display:grid;place-items:center}
+  .menu{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;background:#151618f7;backdrop-filter:blur(12px);padding:10px 16px 18px;gap:2px;margin:0}
+  .menu.aberto{display:flex}
+  .menu a{padding:12px 14px;font-size:15px}
+  .nav .marcas{display:none}
+  .nav .bt-share span{display:none}
+  .nav .bt-share{padding:0 12px}
+  .tarefa{grid-template-columns:1fr}
+  .t-onde{border-left:0;border-top:1px solid var(--line)}
+  .passos{grid-template-columns:1fr}
+  .ft{grid-template-columns:1fr 1fr}
+  .ft>div:first-child{grid-column:1/-1}
+}
+@media (max-width:640px){
+  .wrap,.nav .in{padding-left:16px;padding-right:16px}
+  .nav .in{gap:10px;padding-top:10px;padding-bottom:10px}
+  .nav .logo img{height:34px}
+  html{scroll-padding-top:200px}
+  section{padding:64px 0}
+  .hero{padding:100px 0 80px;min-height:0}
+  .rapido{border-radius:18px}
+  .campo{flex-basis:100%}
+  .rapido .bt{width:100%}
+  .filtro{top:58px;border-radius:16px;padding:8px}
+  .sel{width:100%;display:grid;grid-template-columns:1fr 1fr}
+  .sel select,.sel input{max-width:none;width:100%;min-width:0}
+  .sel input{grid-column:1/-1}
+  .papel{grid-template-columns:1fr;gap:4px}
+  .papel .rs{flex-direction:row;flex-wrap:wrap;gap:4px 12px}
+  .t-corpo{padding:18px 18px 18px 22px}
+  .fp-h h3{font-size:20px}
+  .fp-h .bolha{width:48px;height:48px;font-size:12px}
+  .prz{grid-template-columns:1fr 1fr}
+  .tiles,.gars{grid-template-columns:1fr}
+  .ft{grid-template-columns:1fr}
+  .faq .rsp{padding-left:0}
+}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.rv,.anim-in{opacity:1;transform:none}}
+@media print{.nav,.hero,.filtro,.topo,.aviso-faixa{display:none}.rv{opacity:1;transform:none}.tarefa{break-inside:avoid}}
+</style>
+</head>
+<body>
+
+<!-- ================= CABEÇALHO ================= -->
+<header class="nav" id="nav">
+  <div class="in">
+    <a class="logo" href="#inicio" aria-label="Estapar — início"><img src="img/estapar.png" alt="Estapar" width="330" height="206"></a>
+    <nav class="menu" id="menu" aria-label="Menu principal">
+      <a href="#rotina">Minha rotina</a>
+      <a href="#prazos">Prazos</a>
+      <a href="#garagens">Garagens</a>
+      <a href="#links">Links</a>
+      <a href="#duvidas">Dúvidas</a>
+    </nav>
+    <div class="marcas">
+      <span class="ep"><img src="img/esta-power.jpg" alt="Esta Power"></span>
+      <img class="gptw" src="img/gptw.png" alt="Great Place to Work certificada">
+    </div>
+    <button class="bt-share" id="compartilhar" aria-haspopup="true" aria-expanded="false"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg><span>Compartilhar</span></button>
+    <button class="burger" id="burger" aria-label="Abrir menu" aria-expanded="false"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+  <div class="estrada" aria-hidden="true"><div class="feito" id="feito"></div>
+    <svg class="carro" id="carro" viewBox="0 0 60 36"><rect x="2" y="6" width="56" height="24" rx="8" fill="#70D44B"/><rect x="20" y="9" width="18" height="18" rx="4" fill="#151618" opacity=".55"/><rect x="54" y="9" width="4" height="5" rx="1" fill="#fff6c8"/><rect x="54" y="22" width="4" height="5" rx="1" fill="#fff6c8"/></svg>
+  </div>
+</header>
+
+<!-- ================= CAPA ================= -->
+<section class="hero" id="inicio">
+  <div class="estac-wrap" id="estac" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="eyebrow anim-in">Orientação e atribuição de responsabilidades</div>
+    <h1 class="anim-in d1">O que fazer, quando fazer e <span class="g">onde fazer.</span></h1>
+    <p class="lead anim-in d2">Sua rotina de líder em um só lugar: o que é diário, semanal, quinzenal e mensal — e o link certo para abrir o sistema ou a planilha e preencher.</p>
+    <form class="rapido anim-in d3" id="rapido">
+      <div class="campo"><label for="h-g">Minha garagem</label><select id="h-g"></select></div>
+      <div class="campo"><label for="h-r">Minha função</label><select id="h-r"></select></div>
+      <button class="bt" type="submit">Ver minha rotina <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+    </form>
+    <div class="atalhos anim-in d4" id="atalhos"></div>
+  </div>
+  <div class="rolar" aria-hidden="true"></div>
+</section>
+
+<!-- ================= AVISOS ================= -->
+<div id="avisos"></div>
+
+<!-- ================= COMO FUNCIONA ================= -->
+<section id="como">
+  <div class="wrap">
+    <div class="sec-h rv"><span class="eyebrow esc">Como funciona</span><h2>Três passos, sem complicação</h2><p>Você não preenche nada aqui. Este site mostra o caminho e leva você direto para o lugar certo.</p></div>
+    <div class="passos">
+      <div class="passo rv"><div class="ico"><svg viewBox="0 0 24 24"><path d="M3 21V8l9-5 9 5v13"/><path d="M7 21v-8h10v8"/><path d="M10 17h4"/></svg></div><span class="n">01.</span><h3>Escolha sua garagem e sua função</h3><p>Liderança, Analista ou Supervisão. O site guarda a sua escolha para a próxima visita.</p></div>
+      <div class="passo rv"><div class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4M7 13h4M7 17h7"/></svg></div><span class="n">02.</span><h3>Veja o que fazer e quando</h3><p>Todos os dias, toda semana, a cada 15 dias, todo mês ou quando acontecer — com prazo, quando existir.</p></div>
+      <div class="passo rv"><div class="ico"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M8 7h9v9"/></svg></div><span class="n">03.</span><h3>Clique no botão verde e preencha</h3><p>O botão abre o sistema ou a planilha certa em uma nova aba. Preencha e salve por lá.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MINHA ROTINA ================= -->
+<section id="rotina">
+  <div class="wrap">
+    <div class="sec-h rv"><span class="eyebrow esc">Minha rotina</span><h2 id="r-tit">O que fazer em cada período</h2><p>Filtre pela sua garagem e função. Cada tarefa mostra quem faz, o que fazer, o prazo e o botão para abrir onde se preenche.</p></div>
+    <div class="filtro" id="filtro">
+      <div class="pers" id="pers" role="tablist" aria-label="Periodicidade"></div>
+      <div class="sel">
+        <select id="f-g" aria-label="Garagem"></select>
+        <select id="f-r" aria-label="Função"></select>
+        <input id="f-q" type="search" placeholder="Buscar tarefa ou sistema…" aria-label="Buscar">
+        <button class="limpar" id="limpar" hidden>Limpar</button>
+      </div>
+    </div>
+    <div class="resumo" id="resumo"></div>
+    <div id="faixas"></div>
+  </div>
+</section>
+
+<!-- ================= PRAZOS ================= -->
+<section id="prazos">
+  <div class="wrap">
+    <div class="sec-h rv"><span class="eyebrow">Prazos</span><h2>Horários que não podem passar</h2><p>Os prazos que constam na planilha de responsabilidades.</p></div>
+    <div class="prz">
+      <div class="pz rv"><div class="v">16:59</div><h3>Dias úteis</h3><p>Prestação de contas e planilha de receita</p></div>
+      <div class="pz rv"><div class="v">10:00</div><h3>1º dia útil do mês</h3><p>Prestação de contas e planilha de receita</p></div>
+      <div class="pz rv"><div class="v">5 <small>dias</small></div><h3>Veloe</h3><p>Prazo para contestar tags / OSAs</p></div>
+      <div class="pz rv"><div class="v">15 <small>dias</small></div><h3>ConectCar</h3><p>Prazo para contestar tags / OSAs</p></div>
+      <div class="pz rv"><div class="v">30 <small>dias</small></div><h3>Sem Parar</h3><p>Prazo para contestar tags / OSAs</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= GARAGENS ================= -->
+<section id="garagens">
+  <div class="wrap">
+    <div class="sec-h rv"><span class="eyebrow esc">Garagens</span><h2>Escolha a sua garagem</h2><p>Clique na sua garagem para ver a rotina dela. Você também pode copiar o link e mandar para a sua equipe.</p></div>
+    <div class="gars" id="gars"></div>
+    <p class="nota rv">As rotinas valem para todas as garagens. Quando houver um link específico de uma garagem, ele aparece automaticamente ao escolher a garagem.</p>
+  </div>
+</section>
+
+<!-- ================= LINKS ================= -->
+<section id="links">
+  <div class="wrap">
+    <div class="sec-h rv"><span class="eyebrow esc">Central de links</span><h2>Todos os sistemas e planilhas</h2><p id="lk-sub">Clique para abrir direto, em uma nova aba.</p></div>
+    <div class="lk-busca rv"><input id="lk-q" type="search" placeholder="Procure por Nexus, GED, Jira, escala, cancela…" aria-label="Buscar link"></div>
+    <div class="tiles" id="tiles"></div>
+  </div>
+</section>
+
+<!-- ================= DÚVIDAS ================= -->
+<section id="duvidas">
+  <div class="wrap">
+    <div class="sec-h rv"><span class="eyebrow esc">Dúvidas</span><h2>Perguntas frequentes</h2></div>
+    <div class="faq" id="faq">
+      <details class="rv"><summary><span class="n">01.</span>Preciso preencher alguma coisa neste site?<span class="mx">+</span></summary><div class="rsp">Não. Este site só orienta. Você preenche e salva no sistema ou na planilha que abre quando clica no botão verde da tarefa.</div></details>
+      <details class="rv"><summary><span class="n">02.</span>Como peço algo para o RH, DP ou Folha?<span class="mx">+</span></summary><div class="rsp">Desde 16/11/2026, todas as solicitações para RH / DP / Folha são feitas por chamado. <a href="https://estaparjsm.atlassian.net/servicedesk/customer/portal/2267" target="_blank" rel="noopener">Abrir chamado ↗</a></div></details>
+      <details class="rv"><summary><span class="n">03.</span>Cancelei um ticket ou abri a cancela manualmente. Onde registro?<span class="mx">+</span></summary><div class="rsp">Na planilha de registro de abertura manual de cancela e cancelamento de ticket. <a href="https://docs.google.com/spreadsheets/d/1zHzsCe1V5iOalQpOPDowBXLKXCjtbwOxe8b0RGhw05w/edit?gid=434386130" target="_blank" rel="noopener">Abrir planilha ↗</a></div></details>
+      <details class="rv"><summary><span class="n">04.</span>O link da Retaguarda não abre. O que fazer?<span class="mx">+</span></summary><div class="rsp">A Retaguarda é um endereço da rede interna da Estapar: ela só abre em um computador conectado à rede da Estapar (ou pela VPN). Os demais links abrem de qualquer lugar e pedem o seu login de costume.</div></details>
+      <details class="rv"><summary><span class="n">05.</span>A rotina muda de uma garagem para outra?<span class="mx">+</span></summary><div class="rsp">Não. As rotinas valem para todas as garagens. Se uma garagem tiver um link próprio, ele aparece no lugar do link geral quando você escolhe a garagem.</div></details>
+      <details class="rv"><summary><span class="n">06.</span>Como mando a minha rotina para a equipe?<span class="mx">+</span></summary><div class="rsp">Escolha a garagem e a função e clique em <b>Compartilhar</b> no topo, ou em <b>Copiar link desta visão</b>. Quem abrir o link já cai na mesma garagem e função.</div></details>
+      <details class="rv"><summary><span class="n">07.</span>Encontrei uma informação errada. Com quem falo?<span class="mx">+</span></summary><div class="rsp">Fale com a sua supervisão. O conteúdo deste site segue a planilha de Orientação e Atribuição de Responsabilidades e é atualizado pela supervisão.</div></details>
+    </div>
+  </div>
+</section>
+
+<!-- ================= RODAPÉ ================= -->
+<footer>
+  <div class="wrap">
+    <div class="ft">
+      <div>
+        <img class="lg" src="img/estapar.png" alt="Estapar">
+        <p style="margin:0;max-width:40ch">Orientação e atribuição de responsabilidades das garagens da regional Campinas.</p>
+        <div class="mc"><span class="ep"><img src="img/esta-power.jpg" alt="Esta Power"></span><img class="gptw" src="img/gptw.png" alt="Great Place to Work certificada"></div>
+      </div>
+      <div><h4>Navegue</h4><ul><li><a href="#rotina">Minha rotina</a></li><li><a href="#prazos">Prazos</a></li><li><a href="#garagens">Garagens</a></li><li><a href="#links">Central de links</a></li><li><a href="#duvidas">Dúvidas</a></li></ul></div>
+      <div><h4>Mais usados</h4><ul id="ft-links"></ul></div>
+    </div>
+    <div class="copy"><span id="ft-fonte"></span><span>Estapar · uso interno</span></div>
+  </div>
+</footer>
+
+<button class="topo" id="topo" aria-label="Voltar ao topo"><svg viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6"/></svg></button>
+<div class="share-pop" id="sharePop" role="menu" hidden>
+  <div class="h">Compartilhar esta página</div>
+  <button role="menuitem" data-acao="copiar">🔗 Copiar link</button>
+  <a role="menuitem" id="sh-wa" target="_blank" rel="noopener">💬 Enviar por WhatsApp</a>
+  <a role="menuitem" id="sh-em" target="_blank" rel="noopener">✉️ Enviar por e-mail</a>
+  <input id="shareLink" readonly aria-label="Link da página">
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="dados.js"></script>
+<script>
+(function () {
+'use strict';
+var $ = function (id) { return document.getElementById(id); };
+var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+function norm(s) { return String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase(); }
+var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+var RESPS = ['Liderança', 'Analista', 'Supervisão'];
+var COR_R = { 'Liderança': '#70D44B', 'Analista': '#2457B3', 'Supervisão': '#E9A23B' };
+var PERS = [
+  { k: 'Diária',            t: 'Todos os dias',       s: 'Rotina diária',                 b: 'Dia',    c: '#70D44B', tc: '#151618' },
+  { k: 'Semanal',           t: 'Toda semana',         s: 'Rotina semanal',                b: 'Sem',    c: '#2F9E8F', tc: '#fff' },
+  { k: 'Quinzenal',         t: 'A cada 15 dias',      s: 'Rotina quinzenal',              b: '15d',    c: '#2457B3', tc: '#fff' },
+  { k: 'Mensal',            t: 'Todo mês',            s: 'Rotina mensal',                 b: 'Mês',    c: '#151618', tc: '#fff' },
+  { k: 'Quando necessário', t: 'Quando acontecer',    s: 'Sempre que a situação ocorrer', b: '!',      c: '#E9A23B', tc: '#151618' }
+];
+function perDef(k) { return PERS.filter(function (p) { return p.k === k; })[0]; }
+var NOMES_GAR = GARAGENS.map(function (g) { return g.nome; });
+
+var ICO = {
+  planilha: '<svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18"/></svg>',
+  sistema:  '<svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>',
+  chamado:  '<svg viewBox="0 0 24 24"><path d="M3 9a2 2 0 0 0 0 6v3h18v-3a2 2 0 0 1 0-6V6H3z"/><path d="M13 6v12" stroke-dasharray="2 3"/></svg>',
+  portal:   '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>'
+};
+var TIPO = { planilha: 'Planilha', sistema: 'Sistema', chamado: 'Chamado', portal: 'Portal' };
+var SETA = '<svg class="seta" viewBox="0 0 24 24"><path d="M7 17L17 7M8 7h9v9"/></svg>';
+var RELOGIO = '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>';
+
+/* ---------- estado (fica no endereço da página, para compartilhar) ---------- */
+var F = { g: '', r: '', p: '', q: '' };
+var LS = null; try { LS = window.localStorage; } catch (e) {}
+function lerUrl() {
+  try {
+    var q = new URLSearchParams(location.search);
+    if (q.get('garagem') && NOMES_GAR.indexOf(q.get('garagem')) >= 0) F.g = q.get('garagem');
+    if (q.get('funcao') && RESPS.indexOf(q.get('funcao')) >= 0) F.r = q.get('funcao');
+    if (q.get('periodo') && perDef(q.get('periodo'))) F.p = q.get('periodo');
+  } catch (e) {}
+  if (!F.g && !F.r && LS) {
+    try { var g = LS.getItem('est_garagem'), r = LS.getItem('est_funcao');
+      if (g && NOMES_GAR.indexOf(g) >= 0) F.g = g; if (r && RESPS.indexOf(r) >= 0) F.r = r; } catch (e) {}
+  }
+}
+function urlVisao(f) {
+  f = f || F; var q = new URLSearchParams();
+  if (f.g) q.set('garagem', f.g); if (f.r) q.set('funcao', f.r); if (f.p) q.set('periodo', f.p);
+  var s = q.toString();
+  return location.origin + location.pathname + (s ? '?' + s : '') + (s ? '#rotina' : '');
+}
+function gravar() {
+  try { var u = urlVisao(); history.replaceState(null, '', u.replace(location.origin, '').replace(/#rotina$/, '') + (location.hash || '')); } catch (e) {}
+  if (LS) { try { LS.setItem('est_garagem', F.g); LS.setItem('est_funcao', F.r); } catch (e) {} }
+}
+
+/* ---------- regras de filtro ---------- */
+function persDe(a, resp) {
+  if (a.todos || !a.papeis.length) return a.per || [];
+  var s = {}; a.papeis.forEach(function (p) { if (!resp || p.r === resp) p.p.forEach(function (x) { s[x] = 1; }); });
+  return PERS.map(function (x) { return x.k; }).filter(function (k) { return s[k]; });
+}
+function textoBusca(a) {
+  return norm([a.titulo, a.sub, a.dept, a.grupo, (a.sis || []).join(' '), a.papeis.map(function (p) { return p.r + ' ' + p.o; }).join(' '), a.links.map(function (l) { return l.t; }).join(' ')].join(' '));
+}
+function atende(a, semPer) {
+  if (F.r && !a.todos && !a.papeis.some(function (p) { return p.r === F.r; })) return false;
+  if (F.q && textoBusca(a).indexOf(norm(F.q)) < 0) return false;
+  if (!semPer && F.p && persDe(a, F.r).indexOf(F.p) < 0) return false;
+  return true;
+}
+function urlDoLink(l) { return (F.g && l.g && l.g[F.g]) ? l.g[F.g] : l.u; }
+
+/* ---------- montagem ---------- */
+function opcoes(sel, rot, vals, atual) {
+  sel.innerHTML = '<option value="">' + rot + '</option>' + vals.map(function (v) { return '<option' + (v === atual ? ' selected' : '') + '>' + esc(v) + '</option>'; }).join('');
+}
+function montaAvisos() {
+  $('avisos').innerHTML = AVISOS.map(function (a) {
+    return '<div class="aviso-faixa"><div class="wrap"><span class="ic">!</span><p>' + a.texto + '</p>' + (a.link ? '<a href="' + esc(a.link.u) + '" target="_blank" rel="noopener">' + esc(a.link.t) + ' ↗</a>' : '') + '</div></div>';
+  }).join('');
+}
+function montaFiltros() {
+  opcoes($('f-g'), 'Garagem: todas', NOMES_GAR, F.g);
+  opcoes($('f-r'), 'Função: todas', RESPS, F.r);
+  opcoes($('h-g'), 'Todas as garagens', NOMES_GAR, F.g);
+  opcoes($('h-r'), 'Todas as funções', RESPS, F.r);
+  $('f-g').classList.toggle('ativo', !!F.g); $('f-r').classList.toggle('ativo', !!F.r);
+  if ($('f-q').value !== F.q) $('f-q').value = F.q;
+  $('limpar').hidden = !(F.g || F.r || F.p || F.q);
+}
+function montaPers() {
+  var base = ATIVIDADES.filter(function (a) { return atende(a, true); });
+  var h = '<button role="tab" data-p="" class="' + (F.p ? '' : 'on') + '">Todas <i>' + base.length + '</i></button>';
+  PERS.forEach(function (p) {
+    var n = base.filter(function (a) { return persDe(a, F.r).indexOf(p.k) >= 0; }).length;
+    h += '<button role="tab" data-p="' + p.k + '" class="' + (F.p === p.k ? 'on' : '') + '">' + p.t + ' <i>' + n + '</i></button>';
+  });
+  $('pers').innerHTML = h;
+  $$('button', $('pers')).forEach(function (b) { b.onclick = function () { F.p = b.getAttribute('data-p'); atualiza(); }; });
+}
+function chipPer(k) { var p = perDef(k); return '<span class="pc" style="--c:' + p.c + ';--t:' + p.tc + '">' + esc(p.t) + '</span>'; }
+function chipResp(r) { return '<span class="resp" style="--c:' + COR_R[r] + '"><i></i>' + esc(r) + '</span>'; }
+
+/* tarefa dentro de uma faixa de periodicidade */
+function tarefa(a, per) {
+  var ps = a.papeis.filter(function (p) { return (!F.r || p.r === F.r) && p.p.indexOf(per) >= 0; });
+  var grupos = [];
+  ps.forEach(function (p) {
+    var key = p.p.join('|') + '#' + p.o, g = grupos.filter(function (x) { return x.key === key; })[0];
+    if (g) g.rs.push(p.r); else grupos.push({ key: key, rs: [p.r], p: p.p, o: p.o });
+  });
+  var h = '<article class="tarefa rv"><div class="t-corpo"><div class="t-top"><span class="dept">' + esc(a.dept) + '</span>' + (a.novo ? '<span class="novo">NOVO</span>' : '') + '</div>';
+  h += '<h4>' + esc(a.titulo) + '</h4>' + (a.sub ? '<p class="t-sub">' + esc(a.sub) + '</p>' : '');
+  h += '<div class="quem">';
+  if (a.todos || !a.papeis.length) {
+    h += '<div class="papel"><div class="rs"><span class="resp" style="--c:#9AA3A8"><i></i>Todos</span></div><div><p style="color:var(--mute)">Vale para toda a equipe da operação.</p></div></div>';
+  } else {
+    grupos.forEach(function (g) {
+      var outros = g.p.filter(function (x) { return x !== per; });
+      h += '<div class="papel"><div class="rs">' + g.rs.map(chipResp).join('') + '</div><div>' +
+        (g.o ? '<p>' + esc(g.o) + '</p>' : '<p style="color:var(--mute)">Acompanhar e atualizar no local indicado ao lado.</p>') +
+        (outros.length ? '<div class="pp"><span style="font-size:12px;color:var(--mute)">Também:</span>' + outros.map(chipPer).join('') + '</div>' : '') +
+        '</div></div>';
+    });
+  }
+  h += '</div>';
+  if (a.prazo) h += '<div class="prazo">' + RELOGIO + '<span>' + a.prazo + '</span></div>';
+  h += '</div><div class="t-onde"><span class="tt">Onde fazer</span>';
+  if (a.sis && a.sis.length) h += '<div class="sis">' + a.sis.map(function (s) { return '<span>' + esc(s) + '</span>'; }).join('') + '</div>';
+  if (a.links.length) h += a.links.map(function (l) {
+    return '<a class="lk" href="' + esc(urlDoLink(l)) + '" target="_blank" rel="noopener"><span class="ic">' + ICO[l.k] + '</span><span class="tx">' + (/^abrir/i.test(l.t) ? '' : 'Abrir ') + esc(l.t) + (l.rede ? '<span class="rede">Só na rede Estapar / VPN</span>' : '') + '</span>' + SETA + '</a>';
+  }).join('');
+  else h += '<div class="semlink">Sem link direto: faça pelo sistema indicado acima.</div>';
+  return h + '</div></article>';
+}
+function montaRotina() {
+  var lista = ATIVIDADES.filter(function (a) { return atende(a, false); });
+  var per = F.p ? PERS.filter(function (p) { return p.k === F.p; }) : PERS;
+  var h = '';
+  per.forEach(function (p) {
+    var itens = lista.filter(function (a) { return persDe(a, F.r).indexOf(p.k) >= 0; });
+    if (!itens.length && F.q) return;
+    h += '<div class="faixa-per"><div class="fp-h rv"><span class="bolha" style="--c:' + p.c + ';--t:' + p.tc + '">' + p.b + '</span><div><h3>' + p.t + '</h3><small>' + p.s + '</small></div><span class="lane"></span><span class="q">' + itens.length + ' tarefa' + (itens.length === 1 ? '' : 's') + '</span></div><div class="tarefas">';
+    h += itens.length ? itens.map(function (a) { return tarefa(a, p.k); }).join('') :
+      '<div class="vaz">Nenhuma rotina ' + p.s.replace('Rotina ', '').toLowerCase() + (F.r ? ' para <b>' + esc(F.r) + '</b>' : '') + ' na planilha no momento.</div>';
+    h += '</div></div>';
+  });
+  if (!h) h = '<div class="vaz"><b>Nada encontrado para “' + esc(F.q) + '”.</b><br>Tente outra palavra ou limpe a busca.</div>';
+  $('faixas').innerHTML = h;
+  var titulo = F.p ? perDef(F.p).t : 'O que fazer em cada período';
+  $('r-tit').textContent = titulo;
+  var partes = [];
+  if (F.g) partes.push('<span class="tag">📍 ' + esc(F.g) + '</span>');
+  if (F.r) partes.push('<span class="tag">' + esc(F.r) + '</span>');
+  $('resumo').innerHTML = '<span><b>' + lista.length + '</b> tarefa' + (lista.length === 1 ? '' : 's') + ' nesta visão</span>' + partes.join('') +
+    ((F.g || F.r || F.p) ? '<button class="copia" id="copiaVisao">🔗 Copiar link desta visão</button>' : '');
+  if ($('copiaVisao')) $('copiaVisao').onclick = function () { copiar(urlVisao()); };
+  observar();
+}
+function montaGaragens() {
+  var carro = '<svg viewBox="0 0 30 54"><rect x="1" y="1" width="28" height="52" rx="9" fill="#70D44B"/><rect x="5" y="14" width="20" height="16" rx="4" fill="#151618" opacity=".55"/><rect x="4" y="1" width="6" height="4" rx="1" fill="#fff6c8"/><rect x="20" y="1" width="6" height="4" rx="1" fill="#fff6c8"/></svg>';
+  $('gars').innerHTML = GARAGENS.map(function (g) {
+    return '<button class="gar rv' + (F.g === g.nome ? ' on' : '') + '" data-g="' + esc(g.nome) + '"><span class="vg">' + carro + '</span>' +
+      (g.obs ? '<span class="ob">' + esc(g.obs) + '</span>' : '') + '<span class="nm">' + esc(g.nome) + '</span>' +
+      '<span class="ac">Ver rotina <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></button>';
+  }).join('');
+  $$('.gar', $('gars')).forEach(function (b) {
+    b.onclick = function () { F.g = b.getAttribute('data-g'); atualiza(); irPara('rotina'); };
+  });
+  observar();
+}
+function montaLinks() {
+  var q = norm($('lk-q').value), itens = [];
+  ATIVIDADES.forEach(function (a) {
+    a.links.forEach(function (l) {
+      var txt = norm(l.t + ' ' + a.titulo + ' ' + a.dept + ' ' + (a.sis || []).join(' '));
+      if (q && txt.indexOf(q) < 0) return;
+      itens.push('<a class="tile rv" href="' + esc(urlDoLink(l)) + '" target="_blank" rel="noopener"><div class="top"><span class="ic">' + ICO[l.k] + '</span><div><div class="tp">' + TIPO[l.k] + ' · ' + esc(a.dept) + '</div><h3>' + esc(l.t) + '</h3></div></div>' +
+        '<p class="pq">Para: ' + esc(a.titulo) + '</p><div class="pps">' + persDe(a, '').map(chipPer).join('') + '</div>' +
+        (l.rede ? '<span class="rd">Só abre na rede Estapar / VPN</span>' : '') +
+        '<span class="ir">Abrir <svg viewBox="0 0 24 24"><path d="M7 17L17 7M8 7h9v9"/></svg></span></a>');
+    });
+  });
+  $('tiles').innerHTML = itens.length ? itens.join('') : '<div class="vaz" style="grid-column:1/-1">Nenhum link encontrado.</div>';
+  $('lk-sub').textContent = itens.length + ' link' + (itens.length === 1 ? '' : 's') + ' · clique para abrir direto, em uma nova aba.';
+  observar();
+}
+function montaAtalhos() {
+  var h = '';
+  ['Diária', 'Semanal', 'Mensal'].forEach(function (k) {
+    var n = ATIVIDADES.filter(function (a) { return persDe(a, F.r).indexOf(k) >= 0 && (!F.r || a.todos || a.papeis.some(function (p) { return p.r === F.r; })); }).length;
+    h += '<a href="#rotina" data-p="' + k + '"><b>' + n + '</b>' + perDef(k).t + '</a>';
+  });
+  $('atalhos').innerHTML = h;
+  $$('a', $('atalhos')).forEach(function (a) { a.onclick = function (e) { e.preventDefault(); F.p = a.getAttribute('data-p'); atualiza(); irPara('rotina'); }; });
+}
+function montaRodape() {
+  var vistos = {}, li = [];
+  ATIVIDADES.forEach(function (a) { a.links.forEach(function (l) { if (li.length < 5 && !vistos[l.t] && !l.rede) { vistos[l.t] = 1; li.push('<li><a href="' + esc(l.u) + '" target="_blank" rel="noopener">' + esc(l.t) + ' ↗</a></li>'); } }); });
+  $('ft-links').innerHTML = li.join('');
+  $('ft-fonte').textContent = 'Fonte: ' + SITE.fonte + ' · atualizado em ' + SITE.atualizadoEm;
+}
+function atualiza() { gravar(); montaFiltros(); montaPers(); montaRotina(); montaAtalhos(); $$('.gar').forEach(function (b) { b.classList.toggle('on', b.getAttribute('data-g') === F.g); }); montaLinks(); }
+function irPara(id) { var el = $(id); if (el) el.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' }); }
+
+/* ---------- surgir ao rolar ---------- */
+var io = 'IntersectionObserver' in window ? new IntersectionObserver(function (es) {
+  es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('vis'); io.unobserve(e.target); } });
+}, { threshold: .08, rootMargin: '0px 0px -40px 0px' }) : null;
+function observar() {
+  $$('.rv:not(.vis)').forEach(function (el, i) {
+    if (!io) { el.classList.add('vis'); return; }
+    if (!el._obs) { el._obs = 1; el.style.transitionDelay = (i % 4) * 70 + 'ms'; io.observe(el); }
+  });
+  /* conteúdo já visível na tela aparece na hora */
+  $$('.rv:not(.vis)').forEach(function (el) { var r = el.getBoundingClientRect(); if (r.top < innerHeight && r.bottom > 0) el.classList.add('vis'); });
+}
+
+/* ---------- eventos ---------- */
+$('f-g').onchange = function () { F.g = this.value; atualiza(); };
+$('f-r').onchange = function () { F.r = this.value; atualiza(); };
+$('f-q').oninput = function () { F.q = this.value; montaPers(); montaRotina(); $('limpar').hidden = !(F.g || F.r || F.p || F.q); };
+$('limpar').onclick = function () { F.g = F.r = F.p = F.q = ''; atualiza(); };
+$('lk-q').oninput = montaLinks;
+$('rapido').onsubmit = function (e) { e.preventDefault(); F.g = $('h-g').value; F.r = $('h-r').value; atualiza(); irPara('rotina'); };
+$('burger').onclick = function () { var a = $('menu').classList.toggle('aberto'); this.setAttribute('aria-expanded', a); };
+$$('#menu a').forEach(function (a) { a.addEventListener('click', function () { $('menu').classList.remove('aberto'); $('burger').setAttribute('aria-expanded', 'false'); }); });
+$('topo').onclick = function () { scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' }); };
+
+/* cabeçalho sólido + carrinho na estrada + menu ativo */
+var secs = ['rotina', 'prazos', 'garagens', 'links', 'duvidas'];
+function aoRolar() {
+  var y = scrollY, max = document.documentElement.scrollHeight - innerHeight, pc = max > 0 ? y / max : 0;
+  $('nav').classList.toggle('solid', y > 40);
+  $('feito').style.width = (pc * 100) + '%';
+  $('carro').style.left = (pc * 100) + '%';
+  $('topo').classList.toggle('show', y > innerHeight);
+  var at = ''; secs.forEach(function (id) { var el = $(id); if (el && el.getBoundingClientRect().top < 200) at = id; });
+  $$('#menu a').forEach(function (a) { a.classList.toggle('on', a.getAttribute('href') === '#' + at); });
+  if (!$('sharePop').hidden) fecharShare();
+}
+addEventListener('scroll', aoRolar, { passive: true });
+
+/* ---------- compartilhar ---------- */
+function textoPag() {
+  var f = []; if (F.g) f.push(F.g); if (F.r) f.push(F.r); if (F.p) f.push(perDef(F.p).t);
+  return 'Estapar — o que fazer, quando fazer e onde fazer' + (f.length ? ' (' + f.join(' · ') + ')' : '');
+}
+function toast(h) { var t = $('toast'); t.innerHTML = h; t.classList.add('show'); clearTimeout(t._h); t._h = setTimeout(function () { t.classList.remove('show'); }, 2600); }
+function abrirShare() {
+  var pop = $('sharePop'), b = $('compartilhar').getBoundingClientRect(), u = urlVisao(), tx = textoPag();
+  $('shareLink').value = u;
+  $('sh-wa').href = 'https://wa.me/?text=' + encodeURIComponent(tx + '\n' + u);
+  $('sh-em').href = 'mailto:?subject=' + encodeURIComponent(tx) + '&body=' + encodeURIComponent(tx + '\n\n' + u);
+  pop.hidden = false;
+  var w = pop.offsetWidth; pop.style.top = (b.bottom + 10) + 'px'; pop.style.left = Math.max(8, Math.min(innerWidth - w - 8, b.right - w)) + 'px';
+  $('compartilhar').setAttribute('aria-expanded', 'true');
+}
+function fecharShare() { $('sharePop').hidden = true; $('compartilhar').setAttribute('aria-expanded', 'false'); }
+function copiar(t) {
+  function via() { var i = $('shareLink'); i.value = t; i.select(); var ok = false; try { ok = document.execCommand('copy'); } catch (e) {} return ok; }
+  var ok = function () { toast('<b>✓</b> Link copiado'); fecharShare(); };
+  if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(t).then(ok, function () { via() ? ok() : toast('Selecione o link e copie com Ctrl+C'); });
+  else via() ? ok() : toast('Selecione o link e copie com Ctrl+C');
+}
+$('compartilhar').onclick = function (e) { e.stopPropagation(); $('sharePop').hidden ? abrirShare() : fecharShare(); };
+$('sharePop').onclick = function (e) { e.stopPropagation(); if (e.target.closest('[data-acao="copiar"]')) copiar(urlVisao()); else if (e.target.closest('a')) fecharShare(); };
+document.addEventListener('click', function () { if (!$('sharePop').hidden) fecharShare(); });
+document.addEventListener('keydown', function (e) { if (e.key === 'Escape') fecharShare(); });
+
+/* ---------- estacionamento animado (mesmo do painel de Ocorrências) ---------- */
+function estacionamento() {
+  var W = 1600, H = 900, cores = ['#5f6468', '#e8e8e8', '#2b2f33', '#7c858b', '#9aa3a8', '#70D44B', '#2457B3', '#b23a3a', '#d9dde0'];
+  var rnd = 7; function r() { rnd = (rnd * 9301 + 49297) % 233280; return rnd / 233280; }
+  var g = '<svg class="estac" viewBox="0 0 ' + W + ' ' + H + '" preserveAspectRatio="xMidYMid slice"><defs>' +
+    '<g id="car"><rect x="-28" y="-13" width="56" height="26" rx="8"/><rect x="-12" y="-10.5" width="22" height="21" rx="4" fill="#0b0c0d" opacity=".55"/><rect x="-6" y="-9" width="11" height="18" rx="3" fill="#fff" opacity=".16"/><rect x="25" y="-10" width="3" height="5" rx="1" fill="#fff6c8"/><rect x="25" y="5" width="3" height="5" rx="1" fill="#fff6c8"/><rect x="-28" y="-10" width="2.5" height="5" fill="#ff5a4f"/><rect x="-28" y="5" width="2.5" height="5" fill="#ff5a4f"/></g>' +
+    '<radialGradient id="farol"><stop offset="0" stop-color="#fff6c8" stop-opacity=".5"/><stop offset="1" stop-color="#fff6c8" stop-opacity="0"/></radialGradient></defs><rect width="' + W + '" height="' + H + '" fill="#17191b"/>';
+  function fila(y0, y1, cy, sy, rot, livre) {
+    for (var x = 0; x <= W + 64; x += 64) {
+      g += '<line x1="' + x + '" y1="' + y0 + '" x2="' + x + '" y2="' + y1 + '" stroke="#fff" stroke-opacity=".2" stroke-width="2"/>';
+      var cx = x + 32, oc = (livre !== undefined && Math.abs(cx - livre) < 2) ? false : r() < .72;
+      if (oc) g += '<use href="#car" fill="' + cores[Math.floor(r() * cores.length)] + '" transform="translate(' + cx + ',' + cy + ') rotate(' + (r() < .5 ? rot : rot + 180) + ')"/>';
+      else if (!(livre !== undefined && Math.abs(cx - livre) < 2)) g += '<rect class="vaga" x="' + (cx - 22) + '" y="' + (Math.min(y0, y1) + 12) + '" width="44" height="' + (Math.abs(y1 - y0) - 24) + '" rx="6" fill="none" stroke="#70D44B" stroke-width="2" style="animation-delay:' + (r() * 5).toFixed(1) + 's"/>';
+      g += '<circle class="sens" cx="' + cx + '" cy="' + sy + '" r="3.4" fill="' + (oc ? '#e0574f' : '#70D44B') + '" style="animation-delay:' + (r() * 4).toFixed(1) + 's"/>';
+    }
+  }
+  /* 3 corredores de vagas e 2 ruas */
+  fila(0, 92, 46, 7, 90);
+  fila(268, 360, 314, 353, 90);
+  fila(360, 452, 406, 445, 90, 1120);
+  fila(628, 720, 674, 713, 90);
+  fila(720, 812, 766, 805, 90);
+  [92, 268, 452, 628].forEach(function (y) { g += '<line x1="0" y1="' + y + '" x2="' + W + '" y2="' + y + '" stroke="#fff" stroke-opacity=".14" stroke-width="2"/>'; });
+  [180, 540].forEach(function (y) { g += '<line class="faixa" x1="0" y1="' + y + '" x2="' + W + '" y2="' + y + '" stroke="#E9A23B" stroke-opacity=".55" stroke-width="3" stroke-dasharray="32 24"/>'; });
+  for (var x = 120; x < W; x += 360) [136, 496].forEach(function (yy) {
+    g += '<path d="M' + x + ' ' + yy + ' l18 0 l-6 -6 M' + (x + 18) + ' ' + yy + ' l-6 6" stroke="#fff" stroke-opacity=".25" stroke-width="2" fill="none"/><path d="M' + (x + 200) + ' ' + (yy + 88) + ' l-18 0 l6 -6 M' + (x + 182) + ' ' + (yy + 88) + ' l6 6" stroke="#fff" stroke-opacity=".25" stroke-width="2" fill="none"/>';
+  });
+  [[136, 'anda', 19, 0, '#70D44B'], [136, 'anda', 23, -11, '#e8e8e8'], [224, 'volta', 21, -4, '#9aa3a8'], [224, 'volta', 26, -15, '#2457B3'], [136, 'anda', 31, -22, '#2b2f33'],
+   [496, 'anda', 24, -6, '#d9dde0'], [584, 'volta', 20, -9, '#70D44B'], [584, 'volta', 29, -19, '#7c858b']].forEach(function (a) {
+    var y = a[0], dir = a[1], d = a[2], dl = a[3], c = a[4], rot = dir === 'anda' ? 0 : 180, fx = dir === 'anda' ? 44 : -44;
+    g += '<g class="mov ' + (dir === 'volta' ? 'volta' : '') + '" style="animation-duration:' + d + 's;animation-delay:' + dl + 's"><ellipse cx="' + fx + '" cy="' + y + '" rx="42" ry="16" fill="url(#farol)"/><use href="#car" fill="' + c + '" transform="translate(0,' + y + ') rotate(' + rot + ')"/></g>';
+  });
+  /* carro verde que entra e estaciona na vaga livre */
+  g += '<g class="estaciona"><use href="#car" fill="#70D44B" transform="translate(1120,496) rotate(-90)"/></g>';
+  g += '<g transform="translate(1440,540)"><rect x="-8" y="-58" width="16" height="22" rx="3" fill="#2b2f33"/><rect class="cancela" x="0" y="-50" width="120" height="7" rx="3.5" fill="#E9A23B"/><circle cx="0" cy="-47" r="5" fill="#70D44B"/></g>';
+  $('estac').innerHTML = g + '</svg>';
+}
+if (!reduce) document.querySelector('.hero').addEventListener('mousemove', function (e) {
+  $('estac').style.transform = 'translate(' + ((e.clientX / innerWidth - .5) * -18) + 'px,' + ((e.clientY / innerHeight - .5) * -10) + 'px)';
+});
+
+/* ---------- início ---------- */
+estacionamento(); montaAvisos(); lerUrl(); montaGaragens(); montaRodape(); atualiza(); aoRolar(); observar();
+if (location.search && location.hash === '#rotina') setTimeout(function () { irPara('rotina'); }, 300);
+})();
+</script>
+</body>
+</html>
