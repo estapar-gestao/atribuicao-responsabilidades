@@ -13,9 +13,40 @@
    ===================================================================== */
 
 var SITE = {
+  area: 'Regional Campinas',                       /* aparece na capa e no rodapé */
+  publico: 'líderes, analistas e supervisão das garagens',
   atualizadoEm: '18/11/2026',
-  fonte: 'Planilha “Orientação e Atribuição de Responsabilidades”'
+  versao: '1.1',
+  fonte: 'Planilha “Orientação e Atribuição de Responsabilidades”',
+  contato: 'Supervisão da Regional Campinas'       /* quem mantém o conteúdo (cargo, não nome) */
 };
+
+/* Prazos em destaque (seção "Prazos de entrega") */
+var PRAZOS = [
+  { valor: '16:59', unidade: '',     titulo: 'Dias úteis',          texto: 'Prestação de contas e planilha de receita' },
+  { valor: '10:00', unidade: '',     titulo: '1º dia útil do mês',  texto: 'Prestação de contas e planilha de receita' },
+  { valor: '5',     unidade: 'dias', titulo: 'Veloe',               texto: 'Prazo para contestar tags / OSAs' },
+  { valor: '15',    unidade: 'dias', titulo: 'ConectCar',           texto: 'Prazo para contestar tags / OSAs' },
+  { valor: '30',    unidade: 'dias', titulo: 'Sem Parar',           texto: 'Prazo para contestar tags / OSAs' }
+];
+
+/* Perguntas frequentes (aceita <b> e links <a>) */
+var DUVIDAS = [
+  { p: 'Preciso preencher alguma informação neste portal?',
+    r: 'Não. O portal é apenas de consulta. O preenchimento é feito no sistema ou na planilha que abre ao clicar no botão verde de cada tarefa.' },
+  { p: 'Como faço uma solicitação para RH, DP ou Folha?',
+    r: 'Desde 16/11/2026, todas as solicitações para RH / DP / Folha são feitas por chamado. <a href="https://estaparjsm.atlassian.net/servicedesk/customer/portal/2267" target="_blank" rel="noopener">Abrir chamado ↗</a>' },
+  { p: 'Cancelei um ticket ou abri a cancela manualmente. Onde registro?',
+    r: 'Na planilha de registro de abertura manual de cancela e cancelamento de ticket. <a href="https://docs.google.com/spreadsheets/d/1zHzsCe1V5iOalQpOPDowBXLKXCjtbwOxe8b0RGhw05w/edit?gid=434386130" target="_blank" rel="noopener">Abrir planilha ↗</a>' },
+  { p: 'O link da Retaguarda não abre. O que fazer?',
+    r: 'A Retaguarda está na rede interna da Estapar e só abre em um computador conectado à rede da empresa ou pela VPN. Os demais links abrem de qualquer lugar e solicitam o login habitual.' },
+  { p: 'A rotina muda de uma garagem para outra?',
+    r: 'Não. As rotinas valem para todas as garagens. Se uma garagem tiver um link próprio, ele substitui o link geral automaticamente quando a garagem é selecionada.' },
+  { p: 'Como envio a rotina para a minha equipe?',
+    r: 'Selecione a garagem e a função e clique em <b>Compartilhar</b>, no topo, ou em <b>Copiar link desta visão</b>. Quem abrir o link verá a mesma garagem e função.' },
+  { p: 'Encontrei uma informação incorreta. A quem devo informar?',
+    r: 'Informe a supervisão da sua regional, responsável por manter este conteúdo atualizado.' }
+];
 
 var GARAGENS = [
   { nome: 'Hospital Pitangueiras' },
