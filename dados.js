@@ -5,7 +5,7 @@
 
    COMO EDITAR (resumo — o passo a passo está em COMO-ATUALIZAR.txt):
    - Textos ficam entre aspas simples: 'assim'. Se precisar de apóstrofo, use ’ (curvo).
-   - Periodicidades válidas: 'Diária', 'Semanal', 'Quinzenal', 'Mensal', 'Quando necessário'
+   - Periodicidades válidas: 'Diária', 'Semanal', 'Mensal', 'Quando necessário'
    - Responsáveis válidos: 'Liderança', 'Analista', 'Supervisão'
    - Tipo de link (k): 'planilha', 'sistema', 'chamado' ou 'portal'
    - rede:true  = o link só abre na rede Estapar (ou com VPN)
@@ -15,8 +15,8 @@
 var SITE = {
   area: 'Regional Campinas',                       /* aparece na capa e no rodapé */
   publico: 'líderes, analistas e supervisão das garagens',
-  atualizadoEm: '18/11/2026',
-  versao: '1.1',
+  atualizadoEm: '19/11/2026',
+  versao: '1.2',
   fonte: 'Planilha “Orientação e Atribuição de Responsabilidades”',
   contato: 'Supervisão da Regional Campinas'       /* quem mantém o conteúdo (cargo, não nome) */
 };
@@ -92,6 +92,30 @@ var ATIVIDADES = [
     sub: 'Desde 16/11/2026 todas as solicitações devem ser feitas por chamado.',
     todos: true, per: ['Quando necessário'], sis: ['Portal de chamados'], papeis: [],
     links: [ { t: 'Abrir chamado para RH/DP/Folha', u: 'https://estaparjsm.atlassian.net/servicedesk/customer/portal/2267', k: 'chamado' } ] },
+
+  { id: 'brsupply', dept: 'Compras (Insumos)', titulo: 'Compras BRSupply',
+    sub: 'Prazos para solicitação de itens e planejamento de estoque para os meses de: novembro e dezembro',
+    sis: ['BRSupply'],
+    papeis: [
+      { r: 'Liderança',  p: ['Mensal'], tag: 'Pedido',    o: 'Faça o pedido dentro da janela de pedidos, conforme o calendário.' },
+      { r: 'Analista',   p: ['Mensal'], tag: 'Cadastro',  o: 'Conforme o calendário.' },
+      { r: 'Supervisão', p: ['Mensal'], tag: 'Aprovação', o: 'Aprove os pedidos até a data indicada no calendário.' } ],
+    janelas: [
+      { nome: 'Novembro', y: 2026, m: 10, ini: 16, fim: 23, ap: 24 },
+      { nome: 'Dezembro', y: 2026, m: 11, ini: 10, fim: 16, ap: 17 } ],
+    nota: 'Caso esteja sem seu acesso ao BRSupply, faça agora mesmo a solicitação do seu acesso para o <b>Analista de Prestação de Contas</b>.',
+    escl: '<p>Os pedidos devem estar devidamente aprovados para seguirem para as etapas de separação e entrega.</p>' +
+      '<p><b>Acompanhamento dos pedidos:</b> o prazo de entrega pode ser acompanhado pelo Portal de Compras &gt; Tracking, onde também é possível consultar as informações do pedido e baixar a nota fiscal.</p>' +
+      '<p><b>Contatos e canais de atendimento:</b> para esclarecimentos sobre o processo, dúvidas sobre pedidos ou informações sobre os itens adquiridos, fale diretamente com o fornecedor responsável pelos canais de atendimento ao cliente da Estapar:</p>' +
+      '<p>Fornecedor Autopel: <a href="mailto:sac.estapar@autopel.com">sac.estapar@autopel.com</a>; <a href="mailto:tainara.bela@autopel.com">tainara.bela@autopel.com</a><br>' +
+      'Fornecedor Personalize: <a href="mailto:vendas13@personalizepapeis.com.br">vendas13@personalizepapeis.com.br</a><br>' +
+      'Fornecedor BRSupply: <a href="mailto:atendimento.estapar@brsupply.com.br">atendimento.estapar@brsupply.com.br</a></p>' +
+      '<p><b>Eventualidades ou exceções:</b> o comprador responsável deve ser acionado para avaliação e direcionamento.<br>' +
+      'BRSupply: <a href="mailto:leticia.ramalho@estapar.com.br">leticia.ramalho@estapar.com.br</a><br>' +
+      'Autopel / Personalize: <a href="mailto:marcos.lopes@estapar.com.br">marcos.lopes@estapar.com.br</a></p>',
+    links: [
+      { t: 'BRSupply — fazer pedido', u: 'https://www.supplymanager.com.br/app/Login/', k: 'portal' },
+      { t: 'Solicitar acesso ao BRSupply', u: 'https://docs.google.com/forms/d/1ZztR1kJw_SyP5LJg2LikLagggk0YioykOmZEH_quSLo/viewform?edit_requested=true', k: 'planilha' } ] },
 
   { id: 'epi', dept: 'SSBE', titulo: 'Acompanhamento de EPI',
     sis: ['SOC'],
