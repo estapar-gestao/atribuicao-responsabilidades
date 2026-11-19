@@ -1,6 +1,6 @@
 # Portal de Atribuição de Responsabilidades — Estapar
 
-Portal de consulta para líderes, analistas e supervisão das garagens Estapar. Ele mostra **o que fazer, quando fazer e onde fazer**: rotinas diárias, semanais, quinzenais, mensais e eventuais, com acesso direto a cada sistema ou planilha.
+Portal de consulta para líderes, analistas e supervisão das garagens Estapar. Ele mostra **o que fazer, quando fazer e onde fazer**: rotinas diárias, semanais, mensais e eventuais, com acesso direto a cada sistema ou planilha.
 
 - **Somente consulta:** o preenchimento continua nos sistemas e planilhas oficiais.
 - **Acesso sem login:** abre para qualquer pessoa com o link e não aparece em buscadores (`noindex`).
@@ -45,7 +45,7 @@ Portal de consulta para líderes, analistas e supervisão das garagens Estapar. 
 
 ### Valores aceitos
 
-- **Periodicidade (`p`)**: `'Diária'`, `'Semanal'`, `'Quinzenal'`, `'Mensal'`, `'Quando necessário'`
+- **Periodicidade (`p`)**: `'Diária'`, `'Semanal'`, `'Mensal'`, `'Quando necessário'`
 - **Função (`r`)**: `'Liderança'`, `'Analista'`, `'Supervisão'`
 - **Tipo de link (`k`)**: `'planilha'`, `'sistema'`, `'chamado'`, `'portal'`
 - **`rede: true`**: indica um link que só abre na rede Estapar ou pela VPN
