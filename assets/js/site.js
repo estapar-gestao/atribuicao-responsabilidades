@@ -11,7 +11,6 @@ var COR_R = { 'Liderança': '#70D44B', 'Analista': '#2457B3', 'Supervisão': '#E
 var PERS = [
   { k: 'Diária',            t: 'Todos os dias',       s: 'Rotina diária',                 b: 'Dia',    c: '#70D44B', tc: '#151618' },
   { k: 'Semanal',           t: 'Toda semana',         s: 'Rotina semanal',                b: 'Sem',    c: '#2F9E8F', tc: '#fff' },
-  { k: 'Quinzenal',         t: 'A cada 15 dias',      s: 'Rotina quinzenal',              b: '15d',    c: '#2457B3', tc: '#fff' },
   { k: 'Mensal',            t: 'Todo mês',            s: 'Rotina mensal',                 b: 'Mês',    c: '#151618', tc: '#fff' },
   { k: 'Quando necessário', t: 'Quando acontecer',    s: 'Sempre que a situação ocorrer', b: '!',      c: '#E9A23B', tc: '#151618' }
 ];
@@ -61,7 +60,7 @@ function persDe(a, resp) {
   return PERS.map(function (x) { return x.k; }).filter(function (k) { return s[k]; });
 }
 function textoBusca(a) {
-  return norm([a.titulo, a.sub, a.dept, a.grupo, (a.sis || []).join(' '), a.papeis.map(function (p) { return p.r + ' ' + p.o; }).join(' '), a.links.map(function (l) { return l.t; }).join(' ')].join(' '));
+  return norm([a.titulo, a.sub, a.dept, a.grupo, (a.sis || []).join(' '), a.papeis.map(function (p) { return p.r + ' ' + (p.tag || '') + ' ' + p.o; }).join(' '), a.nota || '', (a.janelas || []).map(function (j) { return j.nome; }).join(' '), a.links.map(function (l) { return l.t; }).join(' ')].join(' '));
 }
 function atende(a, semPer) {
   if (F.r && !a.todos && !a.papeis.some(function (p) { return p.r === F.r; })) return false;
@@ -102,13 +101,29 @@ function montaPers() {
 function chipPer(k) { var p = perDef(k); return '<span class="pc" style="--c:' + p.c + ';--t:' + p.tc + '">' + esc(p.t) + '</span>'; }
 function chipResp(r) { return '<span class="resp" style="--c:' + COR_R[r] + '"><i></i>' + esc(r) + '</span>'; }
 
+/* calendário de janelas de pedido (ex.: BRSupply), com situação em relação a hoje */
+function janelaHtml(j) {
+  var pad = function (n) { return ('0' + n).slice(-2); }, DIA = 86400000;
+  var hoje = new Date(); hoje.setHours(0, 0, 0, 0);
+  var di = new Date(j.y, j.m, j.ini), df = new Date(j.y, j.m, j.fim), da = new Date(j.y, j.m, j.ap), cls, txt;
+  if (hoje < di) { cls = 'prox'; var n = Math.round((di - hoje) / DIA); txt = 'Abre em ' + n + ' dia' + (n === 1 ? '' : 's'); }
+  else if (hoje <= df) { cls = 'on'; var f = Math.round((df - hoje) / DIA); txt = f === 0 ? 'Aberta · encerra hoje' : 'Aberta · encerra em ' + f + ' dia' + (f === 1 ? '' : 's'); }
+  else if (hoje <= da) { cls = 'ap'; var q = Math.round((da - hoje) / DIA); txt = q === 0 ? 'Aprovação até hoje' : 'Em aprovação · até ' + pad(j.ap) + '/' + pad(j.m + 1); }
+  else { cls = 'fim'; txt = 'Encerrada'; }
+  var tot = j.ap - j.ini + 1, wp = (j.fim - j.ini + 1) / tot * 100, wa = 100 - wp;
+  var pos = Math.min(100, Math.max(0, ((hoje - di) / DIA + .5) / tot * 100)), mostra = hoje >= di && hoje <= da;
+  return '<div class="jn"><div class="jh"><span>' + esc(j.nome) + '</span><span class="st ' + cls + '">' + txt + '</span></div>' +
+    '<div class="jb"><span class="a" style="width:' + wp + '%">Pedidos</span><span class="b" style="width:' + wa + '%">' + (wa >= 18 ? 'Aprov.' : wa >= 10 ? 'Ap.' : '') + '</span>' + (mostra ? '<i class="hoje" style="left:' + pos + '%" title="Hoje"></i>' : '') + '</div>' +
+    '<div class="jd"><span>Pedidos: ' + pad(j.ini) + '/' + pad(j.m + 1) + ' a ' + pad(j.fim) + '/' + pad(j.m + 1) + '</span><span>Aprovação até ' + pad(j.ap) + '/' + pad(j.m + 1) + '</span></div></div>';
+}
+
 /* tarefa dentro de uma faixa de periodicidade */
 function tarefa(a, per) {
   var ps = a.papeis.filter(function (p) { return (!F.r || p.r === F.r) && p.p.indexOf(per) >= 0; });
   var grupos = [];
   ps.forEach(function (p) {
-    var key = p.p.join('|') + '#' + p.o, g = grupos.filter(function (x) { return x.key === key; })[0];
-    if (g) g.rs.push(p.r); else grupos.push({ key: key, rs: [p.r], p: p.p, o: p.o });
+    var key = p.p.join('|') + '#' + p.o + '#' + (p.tag || ''), g = grupos.filter(function (x) { return x.key === key; })[0];
+    if (g) g.rs.push(p.r + (p.tag ? '|' + p.tag : '')); else grupos.push({ key: key, rs: [p.r + (p.tag ? '|' + p.tag : '')], p: p.p, o: p.o });
   });
   var h = '<article class="tarefa rv"><div class="t-corpo"><div class="t-top"><span class="dept">' + esc(a.dept) + '</span>' + (a.novo ? '<span class="novo">NOVO</span>' : '') + '</div>';
   h += '<h4>' + esc(a.titulo) + '</h4>' + (a.sub ? '<p class="t-sub">' + esc(a.sub) + '</p>' : '');
@@ -118,18 +133,21 @@ function tarefa(a, per) {
   } else {
     grupos.forEach(function (g) {
       var outros = g.p.filter(function (x) { return x !== per; });
-      h += '<div class="papel"><div class="rs">' + g.rs.map(chipResp).join('') + '</div><div>' +
+      h += '<div class="papel"><div class="rs">' + g.rs.map(function (x) { var q = x.split('|'); return chipResp(q[0]) + (q[1] ? '<span class="tg">' + esc(q[1]) + '</span>' : ''); }).join('') + '</div><div>' +
         (g.o ? '<p>' + esc(g.o) + '</p>' : '<p style="color:var(--mute)">Acompanhar e atualizar no local indicado ao lado.</p>') +
         (outros.length ? '<div class="pp"><span style="font-size:12px;color:var(--mute)">Também:</span>' + outros.map(chipPer).join('') + '</div>' : '') +
         '</div></div>';
     });
   }
   h += '</div>';
+  if (a.janelas && a.janelas.length) h += '<div class="jans">' + a.janelas.map(janelaHtml).join('') + '</div>';
+  if (a.nota) h += '<div class="nota">' + a.nota + '</div>';
   if (a.prazo) h += '<div class="prazo">' + RELOGIO + '<span>' + a.prazo + '</span></div>';
+  if (a.escl) h += '<details class="escl"><summary>Contatos e orientações</summary><div class="rich">' + a.escl + '</div></details>';
   h += '</div><div class="t-onde"><span class="tt">Onde fazer</span>';
   if (a.sis && a.sis.length) h += '<div class="sis">' + a.sis.map(function (s) { return '<span>' + esc(s) + '</span>'; }).join('') + '</div>';
   if (a.links.length) h += a.links.map(function (l) {
-    return '<a class="lk" href="' + esc(urlDoLink(l)) + '" target="_blank" rel="noopener"><span class="ic">' + ICO[l.k] + '</span><span class="tx">' + (/^abrir/i.test(l.t) ? '' : 'Abrir ') + esc(l.t) + (l.rede ? '<span class="rede">Só na rede Estapar / VPN</span>' : '') + '</span>' + SETA + '</a>';
+    return '<a class="lk" href="' + esc(urlDoLink(l)) + '" target="_blank" rel="noopener"><span class="ic">' + ICO[l.k] + '</span><span class="tx">' + (/^(abrir|solicitar|brsupply|chamado)/i.test(l.t) ? '' : 'Abrir ') + esc(l.t) + (l.rede ? '<span class="rede">Só na rede Estapar / VPN</span>' : '') + '</span>' + SETA + '</a>';
   }).join('');
   else h += '<div class="semlink">Sem link direto: faça pelo sistema indicado acima.</div>';
   return h + '</div></article>';
